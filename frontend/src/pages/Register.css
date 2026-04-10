@@ -1,0 +1,89 @@
+/* Full Page Centering */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background: linear-gradient(to right, #0f172a, #1e293b);
+}
+
+/* Form Box */
+.register-form {
+  background: #1e293b;
+  padding: 30px;
+  width: 320px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Heading */
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+/* Inputs + Select */
+.register-form input,
+.register-form select {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Input Focus */
+.register-form input:focus,
+.register-form select:focus {
+  outline: 2px solid #38bdf8;
+}
+
+/* Button */
+.register-form button {
+  padding: 10px;
+  background: #38bdf8;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+/* Button Hover */
+.register-form button:hover {
+  background: #0ea5e9;
+}
+
+/* Disabled Button */
+.register-form button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Message */
+.message {
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Login Link */
+.login-link {
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-link span {
+  color: #38bdf8;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}

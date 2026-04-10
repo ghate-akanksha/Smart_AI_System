@@ -1,0 +1,62 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 12px 40px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+/* Links */
+.nav-links li a {
+  text-decoration: none;
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.nav-links li a:hover {
+  color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+/* User Section */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Username */
+.user-section span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Logout Button */
+.user-section button {
+  background-color: #ef4444;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Button Hover */
+.user-section button:hover {
+  background-color: #dc2626;
+}
