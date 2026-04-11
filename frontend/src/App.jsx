@@ -8,24 +8,24 @@ import Footer from "./components/Footer";
 
 // Pages
 import Home from "./pages/Home";
+import About from "./pages/About";
 import Register from "./pages/Register";
 
 function App() {
   return (
     <BrowserRouter>
-
-      {/* 🔝 Navbar */}
+      {/* 🔝 Navbar stays visible on all pages */}
       <Navbar />
 
-      {/* 🌐 Routes */}
+      {/* 🌐 Routes manage which page component to show */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
       </Routes>
 
-      {/* 🔻 Footer */}
+      {/* 🔻 Footer stays visible on all pages */}
       <Footer />
-
     </BrowserRouter>
   );
 }
