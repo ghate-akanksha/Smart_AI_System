@@ -6,6 +6,8 @@ import "./Navbar.css";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Get the logged-in user from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
@@ -18,6 +20,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      {/* Brand Section */}
       <div className="brand-container" onClick={() => navigate("/")}>
         <div className="logo">
           <FaGraduationCap className="logo-icon" />
@@ -28,20 +31,41 @@ function Navbar() {
 
       <div className="nav-content">
         <ul className="nav-links">
-          <li><Link to="/" className={isActive("/")}>Home</Link></li>
-          <li><Link to="/about" className={isActive("/about")}>About</Link></li>
+          <li>
+            <Link to="/" className={isActive("/")}>Home</Link>
+          </li>
+          
+          <li>
+            <Link to="/about" className={isActive("/about")}>About</Link>
+          </li>
 
+          {/* Dynamic Dashboard Links based on Role */}
           {user?.role === "student" && (
-            <li><Link to="/student" className={isActive("/student")}>Dashboard</Link></li>
+            <li>
+              <Link to="/student" className={isActive("/student")}>
+                Student Dashboard
+              </Link>
+            </li>
           )}
+
           {user?.role === "faculty" && (
-            <li><Link to="/teacher" className={isActive("/teacher")}>Dashboard</Link></li>
+            <li>
+              <Link to="/teacher" className={isActive("/teacher")}>
+                Faculty Dashboard
+              </Link>
+            </li>
           )}
+
           {user?.role === "admin" && (
-            <li><Link to="/admin" className={isActive("/admin")}>Dashboard</Link></li>
+            <li>
+              <Link to="/admin" className={isActive("/admin")}>
+                Admin Portal
+              </Link>
+            </li>
           )}
         </ul>
 
+        {/* Auth / Profile Section */}
         <div className="auth-section">
           {!user ? (
             <div className="auth-btns">
@@ -61,7 +85,9 @@ function Navbar() {
                   <span className="user-role">{user.role}</span>
                 </div>
               </div>
-              <button className="logout-pill" onClick={handleLogout}>Logout</button>
+              <button className="logout-pill" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           )}
         </div>

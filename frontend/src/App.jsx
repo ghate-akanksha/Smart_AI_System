@@ -12,21 +12,25 @@ import About from "./pages/About";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
+// 🔥 Import the new Student Dashboard component
+import StudentDashboard from "./pages/StudentDashboard"; 
+
 function App() {
   return (
     <BrowserRouter>
+      {/* Navbar stays visible on all pages */}
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
-        
-        {/* ✅ FIX: Change element from <Register /> to <Login /> */}
         <Route path="/login" element={<Login />} />
         
-        {/* 🚀 You should also add your dashboard routes here later */}
-        <Route path="/student" element={<div>Student Dashboard</div>} />
+        {/* ✅ Updated: Route now points to your actual Dashboard component */}
+        <Route path="/student" element={<StudentDashboard />} />
+
+        {/* Placeholders for future dashboards */}
         <Route path="/teacher" element={<div>Teacher Dashboard</div>} />
         <Route path="/admin" element={<div>Admin Dashboard</div>} />
       </Routes>
