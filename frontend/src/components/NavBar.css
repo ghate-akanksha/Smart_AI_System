@@ -8,25 +8,20 @@
   align-items: center;
   padding: 0 5%;
   height: 85px;
-  background: rgba(15, 23, 42, 0.98); /* Deep Navy */
+  background: rgba(15, 23, 42, 0.98); 
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Subtle blue glow border */
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
   color: #f8fafc;
   font-family: 'Inter', sans-serif;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Brand Section - Logo & Motto Stacking */
 .brand-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.brand-container:hover {
-  opacity: 0.9;
+  min-width: 200px;
 }
 
 .logo {
@@ -36,12 +31,6 @@
   font-size: 24px;
   font-weight: 800;
   color: #38bdf8;
-  letter-spacing: -0.5px;
-}
-
-.logo-icon {
-  font-size: 32px;
-  color: #38bdf8;
 }
 
 .motto {
@@ -50,20 +39,18 @@
   letter-spacing: 1.5px;
   color: #94a3b8;
   margin-top: 4px;
-  font-weight: 500;
 }
 
-/* Navigation Content Layout */
 .nav-content {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 40px; /* Space between links and buttons */
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
@@ -73,21 +60,8 @@
   color: #94a3b8;
   font-size: 15px;
   font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  padding: 5px 0;
-}
-
-/* Underline Animation for Links */
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #38bdf8;
-  transition: width 0.3s ease;
+  transition: 0.3s;
+  padding: 8px 0;
 }
 
 .nav-links li a:hover, 
@@ -95,16 +69,11 @@
   color: #38bdf8;
 }
 
-.nav-links li a:hover::after, 
-.nav-links li a.active::after {
-  width: 100%;
-}
-
-/* Auth Section (Login/Register) */
+/* Auth Section Styling */
 .auth-btns {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .login-link {
@@ -112,6 +81,16 @@
   color: #f8fafc;
   font-size: 15px;
   font-weight: 500;
+  padding: 10px 15px; /* Increased clickable area */
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.login-link:hover, 
+.login-link.active {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
 }
 
 .register-btn-modern {
@@ -121,79 +100,54 @@
   padding: 10px 22px;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-btn-modern:hover {
   background: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
 
-/* Logged In User Profile Section */
+/* Logged In Section */
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 6px 16px;
+  gap: 12px;
+}
+
+.profile-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 50px;
+  padding: 5px 12px;
+  border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.user-avatar {
-  font-size: 28px;
-  color: #38bdf8;
-}
+.user-avatar { font-size: 24px; color: #38bdf8; }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
+.user-info { display: flex; flex-direction: column; }
 
-.user-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #f8fafc;
-}
+.user-name { font-size: 13px; font-weight: 600; }
 
-.user-role {
-  font-size: 11px;
-  color: #38bdf8;
-  font-weight: 500;
-  text-transform: capitalize;
-}
+.user-role { font-size: 10px; color: #38bdf8; }
 
 .logout-pill {
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.1);
   color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 6px 14px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 6px 15px;
   border-radius: 20px;
+  cursor: pointer;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-left: 10px;
 }
 
 .logout-pill:hover {
   background: #ef4444;
   color: white;
-  border-color: #ef4444;
-}
-
-/* Responsive Handling */
-@media (max-width: 1024px) {
-  .motto { display: none; }
-  .nav-content { gap: 30px; }
-}
-
-@media (max-width: 768px) {
-  .navbar { padding: 0 20px; }
-  .nav-links { display: none; } /* Consider adding a mobile burger menu later */
-  .logo span { font-size: 20px; }
 }

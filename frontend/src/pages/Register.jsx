@@ -16,7 +16,6 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Handle Input Change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,7 +23,6 @@ function Register() {
     });
   };
 
-  // Handle Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,32 +30,31 @@ function Register() {
 
     try {
       const res = await axios.post("http://localhost:5000/api/auth/register", formData);
-      setMessage("✅ Registration successful!");
+      
+      // 1. Show success message
+      setMessage("✅ Registration successful! Redirecting to login...");
 
-      // 🔥 Optional: auto login store user
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      // Redirect based on role
-      const role = res.data.user.role;
-
-      if (role === "student") navigate("/student");
-      else if (role === "faculty") navigate("/teacher");
-      else if (role === "admin") navigate("/admin");
+      // 2. Wait 2 seconds so the user can read the message, then redirect
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
 
     } catch (error) {
       setMessage(error.response?.data?.message || "❌ Registration failed");
+      setLoading(false); // Only stop loading if there is an error
     }
-
-    setLoading(false);
   };
 
   return (
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
-
         <h2>Create Account</h2>
 
-        {message && <p className="message">{message}</p>}
+        {message && (
+          <p className={`message ${message.includes("✅") ? "success" : "error"}`}>
+            {message}
+          </p>
+        )}
 
         <input
           type="text"
@@ -86,7 +83,6 @@ function Register() {
           required
         />
 
-        {/* 🔥 Role matches your schema */}
         <select name="role" value={formData.role} onChange={handleChange}>
           <option value="student">Student</option>
           <option value="faculty">Faculty</option>
@@ -100,7 +96,6 @@ function Register() {
         <p className="login-link">
           Already have an account? <span onClick={() => navigate("/login")}>Login</span>
         </p>
-
       </form>
     </div>
   );

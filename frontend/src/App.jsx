@@ -10,21 +10,27 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* 🔝 Navbar stays visible on all pages */}
       <Navbar />
 
-      {/* 🌐 Routes manage which page component to show */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
+        
+        {/* ✅ FIX: Change element from <Register /> to <Login /> */}
+        <Route path="/login" element={<Login />} />
+        
+        {/* 🚀 You should also add your dashboard routes here later */}
+        <Route path="/student" element={<div>Student Dashboard</div>} />
+        <Route path="/teacher" element={<div>Teacher Dashboard</div>} />
+        <Route path="/admin" element={<div>Admin Dashboard</div>} />
       </Routes>
 
-      {/* 🔻 Footer stays visible on all pages */}
       <Footer />
     </BrowserRouter>
   );

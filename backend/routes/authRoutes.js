@@ -1,7 +1,15 @@
-const express=require("express");
-const router=express.Router();
+const express = require("express");
+const router = express.Router();
 
-// import controller
-const {registerUser}=require("../controllers/authController");
-router.post("/register",registerUser);
-module.exports=router;
+// 1. Import BOTH controllers from the same file
+const { registerUser, loginUser } = require("../controllers/authController");
+
+// 2. Route for Registration
+// Calls http://localhost:5000/api/auth/register
+router.post("/register", registerUser);
+
+// 3. Route for Login
+// Calls http://localhost:5000/api/auth/login
+router.post("/login", loginUser);
+
+module.exports = router;

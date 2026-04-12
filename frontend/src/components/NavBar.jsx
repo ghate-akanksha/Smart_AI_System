@@ -10,6 +10,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -17,7 +18,6 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Brand & Motto Section */}
       <div className="brand-container" onClick={() => navigate("/")}>
         <div className="logo">
           <FaGraduationCap className="logo-icon" />
@@ -26,23 +26,15 @@ function Navbar() {
         <div className="motto">Human Education for Technical Excellence</div>
       </div>
 
-      {/* Navigation Links */}
       <div className="nav-content">
         <ul className="nav-links">
-          <li>
-            <Link to="/" className={isActive("/")}>Home</Link>
-          </li>
-          
-          {/* About link added */}
-          <li>
-            <Link to="/about" className={isActive("/about")}>About</Link>
-          </li>
+          <li><Link to="/" className={isActive("/")}>Home</Link></li>
+          <li><Link to="/about" className={isActive("/about")}>About</Link></li>
 
-          {/* Conditional Role-Based Links */}
           {user?.role === "student" && (
             <li><Link to="/student" className={isActive("/student")}>Dashboard</Link></li>
           )}
-          {user?.role === "teacher" && (
+          {user?.role === "faculty" && (
             <li><Link to="/teacher" className={isActive("/teacher")}>Dashboard</Link></li>
           )}
           {user?.role === "admin" && (
@@ -50,19 +42,24 @@ function Navbar() {
           )}
         </ul>
 
-        {/* Auth / User Section */}
         <div className="auth-section">
           {!user ? (
             <div className="auth-btns">
-              <Link to="/login" className="login-link">Login</Link>
-              <Link to="/register" className="register-btn-modern">Register</Link>
+              <Link to="/login" className={`login-link ${isActive("/login")}`}>
+                Login
+              </Link>
+              <Link to="/register" className={`register-btn-modern ${isActive("/register")}`}>
+                Register
+              </Link>
             </div>
           ) : (
             <div className="user-profile">
-              <FaUserCircle className="user-avatar" />
-              <div className="user-info">
-                <span className="user-name">{user.name}</span>
-                <span className="user-role">{user.role}</span>
+              <div className="profile-main">
+                <FaUserCircle className="user-avatar" />
+                <div className="user-info">
+                  <span className="user-name">{user.name}</span>
+                  <span className="user-role">{user.role}</span>
+                </div>
               </div>
               <button className="logout-pill" onClick={handleLogout}>Logout</button>
             </div>
