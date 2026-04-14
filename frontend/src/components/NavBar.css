@@ -1,76 +1,96 @@
-/* Core Navbar Styles */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 2000;
+  width: 100%;
+  height: 80px;
+  background-color: #0f172a;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0 5%;
-  height: 85px;
-  background: rgba(15, 23, 42, 0.98); 
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-  color: #f8fafc;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
-.brand-container {
+.navbar-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between; /* Creates the Left, Center, Right layout */
+  align-items: center;
+}
+
+/* Brand Area */
+.brand-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   cursor: pointer;
-  min-width: 200px;
+  flex: 1; /* Allows it to occupy space on the left */
 }
 
-.logo {
+.logo-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 24px;
-  font-weight: 800;
+  gap: 10px;
   color: #38bdf8;
 }
 
-.motto {
-  font-size: 10px;
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  font-size: 28px;
+}
+
+.brand-motto {
+  font-size: 9px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #94a3b8;
+  color: #64748b;
   margin-top: 4px;
+  letter-spacing: 0.8px;
 }
 
-.nav-content {
+/* Center Links Area */
+.nav-links-wrapper {
+  flex: 2; /* Occupies more center space */
   display: flex;
-  align-items: center;
-  gap: 40px; /* Space between links and buttons */
+  justify-content: center;
 }
 
-.nav-links {
+.nav-menu {
   display: flex;
   list-style: none;
-  gap: 25px;
-  margin: 0;
+  gap: 30px;
   padding: 0;
+  margin: 0;
 }
 
-.nav-links li a {
+.nav-menu a {
   text-decoration: none;
   color: #94a3b8;
   font-size: 15px;
   font-weight: 500;
   transition: 0.3s;
-  padding: 8px 0;
+  white-space: nowrap;
 }
 
-.nav-links li a:hover, 
-.nav-links li a.active {
+.nav-menu a:hover, .nav-menu a.active {
   color: #38bdf8;
 }
 
-/* Auth Section Styling */
-.auth-btns {
+/* Right Side Actions */
+.action-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.auth-group {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -81,16 +101,6 @@
   color: #f8fafc;
   font-size: 15px;
   font-weight: 500;
-  padding: 10px 15px; /* Increased clickable area */
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.login-link:hover, 
-.login-link.active {
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.1);
 }
 
 .register-btn-modern {
@@ -100,54 +110,48 @@
   padding: 10px 22px;
   border-radius: 8px;
   font-weight: 700;
-  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+  transition: 0.3s ease;
+}
+
+/* Logged In User Styles */
+.user-profile-group {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 15px;
 }
 
-.register-btn-modern:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* Logged In Section */
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.profile-main {
+.profile-pill {
   display: flex;
   align-items: center;
   gap: 10px;
   background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.user-avatar { font-size: 24px; color: #38bdf8; }
+.avatar-icon { font-size: 22px; color: #38bdf8; }
 
-.user-info { display: flex; flex-direction: column; }
+.user-details { display: flex; flex-direction: column; line-height: 1.2; }
 
-.user-name { font-size: 13px; font-weight: 600; }
+.u-name { font-size: 13px; font-weight: 600; color: #f8fafc; }
 
-.user-role { font-size: 10px; color: #38bdf8; }
+.u-role { font-size: 10px; color: #38bdf8; text-transform: uppercase; }
 
-.logout-pill {
+.logout-btn-pill {
   background: rgba(239, 68, 68, 0.1);
   color: #f87171;
   border: 1px solid rgba(239, 68, 68, 0.2);
-  padding: 6px 15px;
+  padding: 6px 14px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 12px;
   font-weight: 600;
+  font-size: 12px;
+  transition: 0.3s;
 }
 
-.logout-pill:hover {
+.logout-btn-pill:hover {
   background: #ef4444;
   color: white;
 }

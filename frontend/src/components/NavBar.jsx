@@ -6,8 +6,6 @@ import "./Navbar.css";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // Get the logged-in user from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
@@ -20,77 +18,56 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Brand Section */}
-      <div className="brand-container" onClick={() => navigate("/")}>
-        <div className="logo">
-          <FaGraduationCap className="logo-icon" />
-          <span>Edu_web</span>
+      <div className="navbar-container">
+        
+        {/* SECTION 1: Brand (Logo + Motto) */}
+        <div className="brand-section" onClick={() => navigate("/")}>
+          <div className="logo-wrapper">
+            <FaGraduationCap className="logo-icon" />
+            <span className="logo-text">Edu_web</span>
+          </div>
+          <p className="brand-motto">Human Education for Technical Excellence</p>
         </div>
-        <div className="motto">Human Education for Technical Excellence</div>
-      </div>
 
-      <div className="nav-content">
-        <ul className="nav-links">
-          <li>
-            <Link to="/" className={isActive("/")}>Home</Link>
-          </li>
-          
-          <li>
-            <Link to="/about" className={isActive("/about")}>About</Link>
-          </li>
+        {/* SECTION 2: Navigation Links */}
+        <div className="nav-links-wrapper">
+          <ul className="nav-menu">
+            <li><Link to="/" className={isActive("/")}>Home</Link></li>
+            <li><Link to="/about" className={isActive("/about")}>About</Link></li>
+            
+            {user?.role === "student" && (
+              <li><Link to="/student" className={isActive("/student")}>Student Dashboard</Link></li>
+            )}
+            {user?.role === "faculty" && (
+              <li><Link to="/teacher" className={isActive("/teacher")}>Faculty Dashboard</Link></li>
+            )}
+            {user?.role === "admin" && (
+              <li><Link to="/admin" className={isActive("/admin")}>Admin Portal</Link></li>
+            )}
+          </ul>
+        </div>
 
-          {/* Dynamic Dashboard Links based on Role */}
-          {user?.role === "student" && (
-            <li>
-              <Link to="/student" className={isActive("/student")}>
-                Student Dashboard
-              </Link>
-            </li>
-          )}
-
-          {user?.role === "faculty" && (
-            <li>
-              <Link to="/teacher" className={isActive("/teacher")}>
-                Faculty Dashboard
-              </Link>
-            </li>
-          )}
-
-          {user?.role === "admin" && (
-            <li>
-              <Link to="/admin" className={isActive("/admin")}>
-                Admin Portal
-              </Link>
-            </li>
-          )}
-        </ul>
-
-        {/* Auth / Profile Section */}
-        <div className="auth-section">
+        {/* SECTION 3: Auth / User Actions */}
+        <div className="action-section">
           {!user ? (
-            <div className="auth-btns">
-              <Link to="/login" className={`login-link ${isActive("/login")}`}>
-                Login
-              </Link>
-              <Link to="/register" className={`register-btn-modern ${isActive("/register")}`}>
-                Register
-              </Link>
+            <div className="auth-group">
+              <Link to="/login" className={`login-link ${isActive("/login")}`}>Login</Link>
+              <Link to="/register" className="register-btn-modern">Register</Link>
             </div>
           ) : (
-            <div className="user-profile">
-              <div className="profile-main">
-                <FaUserCircle className="user-avatar" />
-                <div className="user-info">
-                  <span className="user-name">{user.name}</span>
-                  <span className="user-role">{user.role}</span>
+            <div className="user-profile-group">
+              <div className="profile-pill">
+                <FaUserCircle className="avatar-icon" />
+                <div className="user-details">
+                  <span className="u-name">{user.name}</span>
+                  <span className="u-role">{user.role}</span>
                 </div>
               </div>
-              <button className="logout-pill" onClick={handleLogout}>
-                Logout
-              </button>
+              <button className="logout-btn-pill" onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>
+
       </div>
     </nav>
   );

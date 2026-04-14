@@ -14,6 +14,8 @@ import Login from "./pages/Login";
 
 // 🔥 Import the new Student Dashboard component
 import StudentDashboard from "./pages/StudentDashboard"; 
+import FacultyDashboard from "./pages/FacultyDashBoard";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -31,8 +33,8 @@ function App() {
         <Route path="/student" element={<StudentDashboard />} />
 
         {/* Placeholders for future dashboards */}
-        <Route path="/teacher" element={<div>Teacher Dashboard</div>} />
-        <Route path="/admin" element={<div>Admin Dashboard</div>} />
+        <Route path="/teacher" element={<FacultyDashboard/>} />
+        <Route path="/admin" element={<AdminDashboard/>} />
       </Routes>
 
       <Footer />

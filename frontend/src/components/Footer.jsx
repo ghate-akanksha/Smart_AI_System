@@ -27,8 +27,9 @@ function Footer() {
 
         <div className="footer-links">
           <h4>Portals</h4>
-          <Link to="/login">Student</Link>
-          <Link to="/login">Faculty</Link>
+           <Link to="/login">Student</Link>
+          <Link to="/login">Faculty</Link> 
+         
           <Link to="/register">Register</Link>
         </div>
 
