@@ -1,6 +1,6 @@
 import React from "react";
 import { FaClock, FaMapMarkerAlt, FaUserTie, FaEdit, FaPlus } from "react-icons/fa";
-import "./Timetable.css";
+// import "./Timetable.css";
 
 function Timetable() {
   const user = JSON.parse(localStorage.getItem("user"));

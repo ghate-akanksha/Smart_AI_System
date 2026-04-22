@@ -1,53 +1,74 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const morgan = require("morgan"); // Added for professional request logging
+const morgan = require("morgan");
 const connectDB = require("./config/db");
 
-// Route Imports
-const authRoutes = require("./routes/authRoutes");
-const noticeRoutes = require("./routes/noticeRoutes"); // Import Notice Routes
-
-// Load Environment Variables
+// 1. Load Environment Variables
 dotenv.config();
 
-// Connect to MongoDB
+// 2. Connect to MongoDB
 connectDB();
 
 const app = express();
 
-// ✅ Middleware
+// 3. Global Middleware
 app.use(cors());
 app.use(express.json());
-app.use(morgan("dev")); // Logs: method url status time - e.g., GET /api/notices 200 15ms
 
-// ✅ API Routes
-app.use("/api/auth", authRoutes);     // Auth: login, register
-app.use("/api/notices", noticeRoutes); // Notices: CRUD & Moderation
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
 
-// ✅ Base Route
+// 4. API Routes
+app.use("/api/auth", require("./routes/authRoutes"));
+  // ← NEW
+
+// 5. Base Health Check Route
 app.get("/", (req, res) => {
-    res.send("Edu_Web API is running..."); // Updated branding
-});
-
-// ✅ 404 Route Handler
-app.use((req, res, next) => {
-    res.status(404).json({ success: false, message: "Route not found" });
-});
-
-// ✅ Global Error Handler
-app.use((err, req, res, next) => {
-    console.error(`Error: ${err.message}`);
-    res.status(err.status || 500).json({ 
-        success: false, 
-        message: err.message || "Internal Server Error",
-        // Show stack trace only in development mode
-        stack: process.env.NODE_ENV === 'development' ? err.stack : {}
+    res.status(200).json({
+        success: true,
+        message: "NexGen College AI API is running...",
+        version: "1.0.0"
     });
 });
 
+// 6. 404 Route Handler
+app.use((req, res, next) => {
+    res.status(404).json({
+        success: false,
+        message: "Route not found"
+    });
+});
+
+// 7. Global Error Handler
+app.use((err, req, res, next) => {
+    console.error(`[Error]: ${err.message}`);
+
+    const statusCode = err.status || 500;
+
+    res.status(statusCode).json({
+        success: false,
+        message: err.message || "Internal Server Error",
+        stack:
+            process.env.NODE_ENV === "development"
+                ? err.stack
+                : undefined
+    });
+});
+
+// 8. Server Activation
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`🚀 Edu_Web Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+const server = app.listen(PORT, () => {
+    console.log(
+        `🚀 NexGen Server running in ${
+            process.env.NODE_ENV || "development"
+        } mode on port ${PORT}`
+    );
+});
+
+process.on("unhandledRejection", (err) => {
+    console.log(`Error: ${err.message}`);
+    server.close(() => process.exit(1));
 });
